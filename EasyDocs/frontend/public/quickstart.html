@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyDocs Quickstart Guide</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f6f8fa;
+      color: #222;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 720px;
+      margin: 48px auto 40px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(37,99,235,0.07), 0 1.5px 8px rgba(0,0,0,0.03);
+      padding: 32px 24px 24px 24px;
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1.1s cubic-bezier(.23,1.01,.32,1) 0.1s both;
+    }
+    h1 {
+      color: #2563eb;
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(90deg, #2563eb 60%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    h1 .icon {
+      font-size: 2.1rem;
+      filter: drop-shadow(0 2px 2px #c7d2fe);
+    }
+    h2 {
+      color: #2563eb;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      margin-top: 0;
+      letter-spacing: -0.5px;
+    }
+    ol {
+      padding-left: 1.3em;
+      margin: 0 0 0.5em 0;
+    }
+    ul {
+      margin-left: 1.2em;
+      margin-bottom: 0.5em;
+    }
+    .section {
+      margin-bottom: 36px;
+      background: #fff;
+      border-radius: 0;
+      padding: 0 0 0 0;
+      box-shadow: none;
+      animation: none;
+    }
+    .section:not(:last-child) { margin-bottom: 38px; }
+    .section + .section { margin-top: 22px; }
+    .tip {
+      background: none;
+      border-left: none;
+      margin-top: 0;
+      margin-bottom: 0;
+      box-shadow: none;
+    }
+    .step {
+      margin-bottom: 0.5em;
+      position: static;
+      padding-left: 0;
+      min-height: unset;
+      font-size: 1em;
+      line-height: 1.5;
+      display: list-item;
+      align-items: unset;
+      background: none;
+      border-radius: 0;
+      box-shadow: none;
+      border-left: none;
+      margin-right: 0;
+      margin-left: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .step:before {
+      display: none;
+    }
+    .step b {
+      color: inherit;
+      font-weight: bold;
+      background: none;
+      -webkit-background-clip: unset;
+      -webkit-text-fill-color: unset;
+      background-clip: unset;
+    }
+    .step .highlight {
+      border-radius: 5px;
+      padding: 2px 8px;
+      margin: 0 2px;
+      font-weight: 500;
+      font-size: 1em;
+      display: inline-block;
+      border: none;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    /* Colorful highlight variants */
+    .step .highlight.yellow { background: #fffbe6; color: #222; box-shadow: 0 1px 2px rgba(251,191,36,0.08); border: 1px solid #ffe066; }
+    .step .highlight.blue { background: #e0f2ff; color: #1e40af; box-shadow: 0 1px 2px rgba(96,165,250,0.08); border: 1px solid #38bdf8; }
+    .step .highlight.green { background: #e6fff6; color: #047857; box-shadow: 0 1px 2px rgba(16,185,129,0.08); border: 1px solid #34d399; }
+    .step .highlight.pink { background: #e6fff6; color: #047857; box-shadow: 0 1px 2px rgba(16,185,129,0.08); border: 1px solid #34d399; }
+    .step .highlight.gray { background: #f3f4f6; color: #222; box-shadow: 0 1px 2px rgba(100,116,139,0.08); border: 1px solid #d1d5db; }
+    }
+    .step .highlight:hover {
+      filter: brightness(0.97);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+    .kbd {
+      display: inline-block;
+      background: #f3f4f6;
+      color: #222;
+      border-radius: 5px;
+      border: 1px solid #dbeafe;
+      padding: 2px 8px;
+      font-size: 0.98em;
+      font-family: 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
+      margin: 0 2px;
+      box-shadow: 0 1px 2px rgba(96,165,250,0.07);
+    }
+    .security {
+      background: linear-gradient(90deg, #f1f5f9 80%, #e0e7ff 100%);
+      border-left: 4px solid #2563eb;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 4px rgba(37,99,235,0.07);
+    }
+    .security li {
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #1e293b;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      border-bottom: 1.5px dotted #60a5fa;
+      transition: border 0.2s, color 0.2s;
+    }
+    a:hover {
+      color: #1e40af;
+      border-bottom: 2.5px solid #2563eb;
+    }
+    /* Decorative shapes */
+    .shape {
+      display: none;
+    }
+    .shape1 {
+      top: -80px; left: -80px; width: 180px; height: 180px; background: radial-gradient(circle, #60a5fa 0%, #2563eb 80%); border-radius: 50%; }
+    .shape2 {
+      bottom: -60px; right: -60px; width: 140px; height: 140px; background: radial-gradient(circle, #fbbf24 0%, #f59e42 80%); border-radius: 50%; }
+    .shape3 {
+      top: 60%; left: -60px; width: 90px; height: 90px; background: radial-gradient(circle, #34d399 0%, #2563eb 80%); border-radius: 50%; }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 18px 4vw 18px 4vw; }
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.1rem; }
+      .section { padding: 12px 6vw 10px 6vw; }
+      .step { font-size: 0.98rem; }
+    }
+  </style>
+  </style>
+</head>
+<body>
+  <div class="shape shape1"></div>
+  <div class="shape shape2"></div>
+  <div class="shape shape3"></div>
+  <div class="container">
+    <a href="/" class="back-to-login quickstart-link" role="button"><span class="icon">←</span> Go back to Login</a>
+    <style>
+      /* Subtle container shadow and border for more depth */
+      .container {
+        border: 1.5px solid #e0e7ef;
+        box-shadow: 0 6px 32px 0 rgba(37,99,235,0.10), 0 1.5px 8px rgba(0,0,0,0.03);
+      }
+      /* Add a soft gradient background to the body for a modern look */
+      body {
+        background: linear-gradient(120deg, #f6f8fa 60%, #e0e7ef 100%);
+      }
+      /* Section headers with a left accent bar */
+      .section > h2 {
+        position: relative;
+        padding-left: 18px;
+      }
+      .section > h2:before {
+        content: '';
+        position: absolute;
+        left: 0; top: 6px; bottom: 6px;
+        width: 5px;
+        border-radius: 3px;
+        background: linear-gradient(180deg, #2563eb 60%, #38bdf8 100%);
+        opacity: 0.18;
+      }
+      /* Step numbers for better onboarding clarity */
+      ol {
+        counter-reset: step;
+      }
+      ol > li.step {
+        counter-increment: step;
+        position: relative;
+        padding-left: 2.2em;
+        margin-bottom: 1.1em;
+        list-style-type: none;
+      }
+      ol > li.step:before {
+        content: counter(step);
+        position: absolute;
+        left: 0.2em;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #2563eb;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1em;
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 4px #2563eb22;
+        opacity: 0.92;
+      }
+      /* Tips section with a soft blue background */
+      .section.tip {
+        background: #f5faff;
+        border-radius: 8px;
+        border-left: 4px solid #38bdf8;
+        box-shadow: 0 1px 8px #38bdf822;
+        padding: 18px 22px 14px 22px;
+        margin-bottom: 32px;
+      }
+      .section.tip ul {
+        margin-left: 0.5em;
+      }
+      /* Security section with a subtle lock icon */
+      .section.security {
+        background: #f7f8fd;
+        border-left: 4px solid #2563eb;
+        border-radius: 8px;
+        box-shadow: 0 1px 8px #2563eb22;
+        padding: 18px 22px 14px 22px;
+        margin-bottom: 32px;
+        position: relative;
+      }
+      .section.security h2:before {
+        content: '\1F512';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.15em;
+        opacity: 0.7;
+        margin-right: 8px;
+      }
+      .section.security h2 {
+        padding-left: 1.7em;
+      }
+      /* Responsive tweaks */
+      @media (max-width: 600px) {
+        .container { padding: 10px 2vw 10px 2vw; }
+        .section.tip, .section.security { padding: 12px 6vw 10px 6vw; }
+        .section > h2 { font-size: 1.05rem; }
+        ol > li.step { font-size: 0.97rem; padding-left: 1.7em; }
+        ol > li.step:before { font-size: 0.95em; width: 1.2em; height: 1.2em; }
+      }
+    </style>
+  <style>
+    .back-to-login {
+      margin-bottom: 18px;
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      left: -4px;
+      cursor: pointer;
+      outline: none;
+      user-select: none;
+    }
+    .back-to-login .icon {
+      font-size: 1.18em;
+      filter: drop-shadow(0 2px 2px #c7d2fe);
+      margin-right: 2px;
+    }
+  </style>
+    <h1><span class="icon">📄</span> EasyDocs Quickstart</h1>
+    <p style="margin-top:-10px; margin-bottom: 28px; color:#2563eb; font-size:1.13em; font-weight:600; letter-spacing:0.01em; display:flex; align-items:center; gap:8px;">
+      Summer of Making <span style="font-size:1.3em; margin-left:2px;">→</span>
+    </p>
+    <p style="margin-top:-12px; margin-bottom: 30px; color:#374151; font-size:1.01em;">Use the steps below to test EasyDocs in a member session!</p>
+    <div class="section">
+      <h2>Getting Started</h2>
+      <ol>
+        <li class="step"><b>Sign Up or Log In:</b> <span class="highlight blue">Start here!</span> Use your username and password. If you’re new, sign up for a <span class="highlight green">free account</span>.</li>
+        <li class="step"><b>Create or Open a Document:</b> Click a document to open, or use the <span class="kbd highlight yellow">New Document</span> button to start fresh.</li>
+        <li class="step"><b>Edit & Collaborate:</b> <span class="highlight gray">Type in the editor.</span> Changes are synced <span class="highlight green">in real time</span> with collaborators. You can see others’ edits instantly.</li>
+        <li class="step"><b>Manual & Autosave:</b> Click <span class="kbd highlight yellow">Save</span> to save, or enable <span class="kbd highlight yellow">Autosave</span> (toggle in the editor) for automatic saving every second.</li>
+        <li class="step"><b>Share & Permissions:</b> Owners can <span class="highlight blue">share documents</span> with others and set their role (<span class="highlight green">editor/viewer</span>). Editors can edit, viewers can only view.</li>
+        <li class="step"><b>Settings:</b> Click <span class="kbd highlight gray">Settings</span> (top right) to change your password or switch between <span class="highlight green">light/dark mode</span>.</li>
+        <li class="step"><b>Print:</b> Use the <span class="kbd highlight yellow">Print</span> button in the editor to print or export your document.</li>
+      </ol>
+    </div>
+    <div class="section tip">
+      <b>Tips for Success:</b>
+      <ul>
+        <li>Use <span class="kbd">Autosave</span> for peace of mind—no lost work!</li>
+        <li>Share documents only with trusted users. You control who can edit or view.</li>
+        <li>Change your password regularly for better security.</li>
+        <li>Admins can reset passwords and manage users in the admin panel.</li>
+        <li>If you see connection or sync issues, check your internet and make sure the Yjs server is running.</li>
+        <li>For best experience, use a modern browser (Chrome, Edge, Firefox, Safari).</li>
+      </ul>
+    </div>
+    <div class="section security">
+      <h2>Security & Privacy</h2>
+      <ul>
+        <li>Your password is always encrypted (bcrypt) and never stored in plain text.</li>
+        <li>Only authenticated users can access or edit documents.</li>
+        <li>Your admins can help you recover your account if you forget your password.</li>
+        <li>All document changes are synced securely over WebSockets.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Need Help?</h2>
+      <p>Check the <a href="https://github.com/MSid13/EasyDocs" target="_blank">EasyDocs GitHub</a> for more help, troubleshooting, and updates.</p>
+    </div>
+  </div>
+</body>
+</html>

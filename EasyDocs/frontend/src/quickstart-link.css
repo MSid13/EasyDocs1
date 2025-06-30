@@ -1,0 +1,41 @@
+/* Eye-catching quickstart link */
+.quickstart-link {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  position: relative;
+  transition: color 0.2s, text-shadow 0.2s;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 12px #b6d0ff66, 0 1px 0 #fff;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+/* Animated underline with gradient and glow */
+.quickstart-link .quickstart-underline {
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+  box-shadow: 0 0 8px #38bdf8cc, 0 0 2px #2563eb99;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+  z-index: 1;
+}
+.quickstart-link:hover {
+  color: #1d4ed8;
+  text-shadow: 0 2px 18px #60a5fa99, 0 1px 0 #fff;
+  background: #e0f2fe;
+}
+.quickstart-link:hover .quickstart-underline {
+  transform: scaleX(1);
+  box-shadow: 0 0 16px #38bdf8cc, 0 0 4px #2563eb99;
+}
